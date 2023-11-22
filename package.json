@@ -1,0 +1,45 @@
+{
+  "name": "soku-game-backgammon",
+  "version": "0.0.3",
+  "description": "The example: soku-game-backgammon.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "pub": "vite build && npm publish --access public"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "type": "module",
+  "keywords": [
+    "soku-game"
+  ],
+  "author": "andrew<1062708758@qq.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.1.55",
+    "@soku-conf/eslint-config": "^1.0.3",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^20.5.1",
+    "eslint": "^8.54.0",
+    "sass": "^1.69.5",
+    "typescript": "^5.1.6",
+    "unocss": "^0.57.6",
+    "vite": "^5.0.0",
+    "vite-plugin-css-injected-by-js": "^3.3.0",
+    "vite-plugin-solid": "^2.7.2"
+  },
+  "dependencies": {
+    "@soku-games/core": "latest",
+    "lodash-es": "^4.17.21",
+    "solid-js": "^1.8.5"
+  }
+}
