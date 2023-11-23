@@ -1,6 +1,6 @@
 {
   "name": "soku-game-backgammon",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "The example: soku-game-backgammon.",
   "scripts": {
     "dev": "vite",
@@ -38,7 +38,7 @@
     "vite-plugin-solid": "^2.7.2"
   },
   "dependencies": {
-    "@soku-games/core": "latest",
+    "@soku-games/core": "^0.3.0",
     "lodash-es": "^4.17.21",
     "solid-js": "^1.8.5"
   }

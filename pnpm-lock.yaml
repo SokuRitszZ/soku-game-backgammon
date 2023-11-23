@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@soku-games/core':
-    specifier: latest
-    version: 0.1.2
+    specifier: ^0.3.0
+    version: 0.3.0
   lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
@@ -853,8 +853,10 @@ packages:
       - typescript
     dev: true
 
-  /@soku-games/core@0.1.2:
-    resolution: {integrity: sha512-RdBg3YtMwX2c7oSfqzgU62WBiGLGt2aXXmvqhEVibXS2X2LGLicrV2X1Sj+PSss/SzaYloUpxrpgXgNlulxkeA==}
+  /@soku-games/core@0.3.0:
+    resolution: {integrity: sha512-Q7bIYFXKcm/DRvQ6HF8o8ZBHi7BrZDz+4RpegOocAVInTchgEKu8iiVn0UsM+Zifw31e/bf7jFMTKNHe0ClNZA==}
+    dependencies:
+      lodash-es: 4.17.21
     dev: false
 
   /@types/babel__core@7.20.4:

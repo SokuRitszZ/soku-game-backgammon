@@ -8,7 +8,7 @@ export class BackgammonValidator extends GamePlugin {
     game.checkStep((stepStr) => {
       // 合法的 turn
       const [, id] = stepStr.split('').map(x => parseInt(x, 36));
-      return id !== game.turn ? 'it\'s not the valid turn.' : '';
+      return id !== game.data.turn ? 'it\'s not the valid turn.' : '';
     });
 
     game.checkStep((stepStr) => {
@@ -105,7 +105,7 @@ export class BackgammonValidator extends GamePlugin {
       const dice = game.data.dice;
       if (dice.length === 0) return ;
 
-      const turn = game.turn;
+      const turn = game.data.turn;
       const piece = game.data.pieces[turn];
       const shouldPass = dice.every(
         d => {

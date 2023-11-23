@@ -1,4 +1,4 @@
-import { GamePluginImpl, GamePlugin, LifeCycle } from '@soku-games/core';
+import { GamePluginImpl, GamePlugin } from '@soku-games/core';
 import { render } from 'solid-js/web';
 
 import { App } from './jsx';
@@ -12,15 +12,13 @@ export class BackgammonScreen extends GamePlugin {
     emit: (stepStr: string) => void
   }): void {
     const el = extra?.el;
-    game.subscribe(LifeCycle.AFTER_START, () => {
-      if (el) {
-        const ratio = {
-          width: el.clientWidth,
-          height: el.clientHeight,
-        };
-        render(() => <App couldControl={extra?.couldControl ?? []} emit={extra?.emit} game={game} ratio={ratio} />, el);
-      }
-    });
+    if (el) {
+      const ratio = {
+        width: el.clientWidth,
+        height: el.clientHeight,
+      };
+      render(() => <App couldControl={extra?.couldControl ?? []} emit={extra?.emit} game={game} ratio={ratio} />, el);
+    }
   }
 }
 

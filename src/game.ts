@@ -12,8 +12,8 @@ export class BackgammonGame extends Game {
         () => <number[]>[],
       ),
     ),
+    turn: -1,
   };
-  turn: number = -1;
 
   __end(reason: string): void {
     console.log(`BackgammonGame over!: ${reason}`);
@@ -24,7 +24,7 @@ export class BackgammonGame extends Game {
     const [posStr, diceStr, turn] = strData.split('\n');
 
     // turn
-    this.turn = +turn;
+    this.data.turn = +turn;
 
     // posLists
     const posLists = posStr.split(' ').map(
@@ -68,7 +68,7 @@ export class BackgammonGame extends Game {
     else if (/^dp([1-6]{2}|[1-6]{4})$/.test(stepStr)) {
       // change dice & pass
       this.data.dice = stepStr.split('').slice(2).map(Number);
-      this.turn ^= 1;
+      this.data.turn ^= 1;
     }
     else if (/^d([1-6]{2}|[1-6]{4})$/.test(stepStr)) {
       // change dice

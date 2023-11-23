@@ -1,5 +1,5 @@
 import { createSignal, For } from 'solid-js';
-import { LifeCycle } from '@soku-games/core';
+import { LifeCycle, CustomEvent } from '@soku-games/core';
 import { store } from '../game.context.ts';
 
 'i-mdi-die-1 i-mdi-die-2 i-mdi-die-3 i-mdi-die-4 i-mdi-die-5 i-mdi-die-6';
@@ -9,8 +9,10 @@ export const Dice = () => {
   const [dice, setDice] = createSignal<number[]>([]);
   const [turn, setTurn] = createSignal<number>(-1);
 
-  game?.subscribe(LifeCycle.AFTER_START, () => setDice([...game?.data.dice ?? []]) && setTurn(game?.turn));
-  game?.subscribe(LifeCycle.AFTER_STEP, () => setDice([...game?.data.dice ?? []]) && setTurn(game?.turn));
+  game?.subscribe(
+    [LifeCycle.AFTER_START, LifeCycle.AFTER_STEP, CustomEvent.CHANGE_SNAPSHOT],
+    () => setDice([...game?.data.dice ?? []]) && setTurn(game?.data.turn),
+  );
 
   return (
     <>
