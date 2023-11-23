@@ -1,6 +1,11 @@
 import { onMount } from 'solid-js';
 import { buildGame, NewGenerator } from '@soku-games/core';
 
+import 'virtual:uno.css';
+
+import '../index';
+import '../screen';
+
 export const App = () => {
   let divRef: HTMLElement;
 

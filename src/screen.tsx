@@ -4,6 +4,8 @@ import { render } from 'solid-js/web';
 import { App } from './jsx';
 import { BackgammonGame } from './game';
 
+import 'virtual:uno.css';
+
 // FIXME vite could not use decorator
 export class BackgammonScreen extends GamePlugin {
   bindGame(game: BackgammonGame, extra?: {

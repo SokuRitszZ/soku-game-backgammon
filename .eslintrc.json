@@ -1,3 +1,4 @@
 {
-  "extends": ["@soku-conf"]
+  "extends": ["@soku-conf"],
+  "ignorePatterns": ["dist/**/*", "node_modules/**/*"]
 }

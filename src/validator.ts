@@ -1,4 +1,4 @@
-import { GamePluginImpl, GamePlugin, LifeCycle } from '@soku-games/core';
+import { GamePlugin, GamePluginImpl, LifeCycle } from '@soku-games/core';
 import { clamp, parseInt } from 'lodash-es';
 import { BackgammonGame } from './game';
 
@@ -79,12 +79,17 @@ export class BackgammonValidator extends GamePlugin {
       if (stepStr[0] !== 'v') return ;
 
       const [, i] = stepStr.split('').map(Number);
-      const isOver = Array.from({ length: 25 }, (_, index) => i + index).every(stackI => game.data.pieces[stackI].length === 0);
-      if (!isOver)
-        return ;
+      const isOver = Array.from(
+        { length: 25 },
+        (_, index) => i + index,
+      ).every(stackI => game.data.pieces[i][stackI].length === 0);
+      if (!isOver) return ;
+
       isGameOver = true;
       game.end(`${i} win`);
     });
+    
+    game.subscribe(LifeCycle.AFTER_END, () => isGameOver = true);
 
     game.subscribe(LifeCycle.AFTER_STEP, () => {
       // 检查是否轮到下一个人
@@ -135,5 +140,3 @@ const generateDice = () => {
 
   return dice;
 };
-
-

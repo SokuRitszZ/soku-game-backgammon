@@ -10,13 +10,21 @@ export default defineConfig({
     cssInjectedByJsPlugin(),
   ],
   build: {
-    lib: {
-      entry: './src/index.tsx',
-      name: 'index',
-      formats: ['cjs', 'es', 'iife', 'umd'],
-      fileName: 'index',
-    },
     rollupOptions: {
+      input: {
+        'core/index': './src/index.ts',
+        'screen/index': './src/screen.tsx',
+      },
+      output: [
+        {
+          entryFileNames: '[name].cjs',
+          format: 'cjs',
+        },
+        {
+          entryFileNames: '[name].mjs',
+          format: 'esm',
+        },
+      ],
       external: ['@soku-games/core'],
     },
   },
