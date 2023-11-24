@@ -86,7 +86,22 @@ export class BackgammonValidator extends GamePlugin {
       if (!isOver) return ;
 
       isGameOver = true;
-      game.end(`${i} win`);
+
+      const j = 1 - i;
+      let area = Array.from({ length: 7 }, (_, ii) => j * 18 + ii);
+      // 完胜
+      if (area.find(stackI => game.data.pieces[j][stackI].length > 0)) {
+        game.end(Array.from({ length: 2 }, (_, ii) => i === ii ? '+3' : '-3').join(';'));
+        return ;
+      }
+      // 全胜
+      area = Array.from({ length: 18 }, (_, ii) => ii + 1 + 6 * j);
+      if (area.find(stackI => game.data.pieces[j][stackI].length > 0)) {
+        game.end(Array.from({ length: 2 }, (_, ii) => i === ii ? '+2' : '-2').join(';'));
+        return ;
+      }
+      // 单胜
+      return Array.from({ length: 2 }, (_, ii) => i === ii ? '+1' : '-1').join(';');
     });
     
     game.subscribe(LifeCycle.AFTER_END, () => isGameOver = true);
