@@ -101,7 +101,7 @@ export class BackgammonValidator extends GamePlugin {
         return ;
       }
       // 单胜
-      return Array.from({ length: 2 }, (_, ii) => i === ii ? '+1' : '-1').join(';');
+      game.end(Array.from({ length: 2 }, (_, ii) => i === ii ? '+1' : '-1').join(';'));
     });
     
     game.subscribe(LifeCycle.AFTER_END, () => isGameOver = true);
