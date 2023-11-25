@@ -1,5 +1,13 @@
 import { Generator, GeneratorImpl } from '@soku-games/core';
 
+const TEST_INIT_0 = [
+  [1, 19],
+];
+
+const TEST_INIT_1 = [
+  [1, 6],
+];
+
 const INIT_0 = [
   [1, 1],
   [2, 1],
