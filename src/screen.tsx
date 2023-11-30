@@ -19,6 +19,7 @@ export class BackgammonScreen extends GamePlugin {
         width: el.clientWidth,
         height: el.clientHeight,
       };
+      el.innerHTML = '';
       render(() => <App couldControl={extra?.couldControl ?? []} emit={extra?.emit} game={game} ratio={ratio} />, el);
     }
   }
