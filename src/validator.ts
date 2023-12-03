@@ -75,7 +75,7 @@ export class BackgammonValidator extends GamePlugin {
     let isGameOver = false;
 
     game.subscribe(LifeCycle.AFTER_STEP, (stepStr: string) => {
-      // 检查游戏是否结束
+      // over?
       if (stepStr[0] !== 'v') return ;
 
       const [, i] = stepStr.split('').map(Number);
@@ -107,10 +107,14 @@ export class BackgammonValidator extends GamePlugin {
     game.subscribe(LifeCycle.AFTER_END, () => isGameOver = true);
 
     game.subscribe(LifeCycle.AFTER_STEP, () => {
-      // 检查是否轮到下一个人
+      // no dice?
+      game.allowed = false;
       if (isGameOver) return ;
       const dice = game.data.dice;
-      if (dice.length > 0) return ;
+      if (dice.length > 0) {
+        game.allowed = true;
+        return ;
+      }
       const newDice = generateDice();
       setTimeout(() => {
         game.forceStep(`dp${newDice.join('')}`);
@@ -120,7 +124,8 @@ export class BackgammonValidator extends GamePlugin {
     const invalid = (stepStr: string) => game['stepCheckChain'].find((fn: (str: string) => string) => !!fn(stepStr));
 
     game.subscribe(LifeCycle.AFTER_STEP, () => {
-      // 是否需要跳过
+      // pass?
+      game.allowed = false;
       if (isGameOver) return ;
       const dice = game.data.dice;
       if (dice.length === 0) return ;
@@ -139,10 +144,14 @@ export class BackgammonValidator extends GamePlugin {
           return !someoneCouldGo;
         },
       );
-      if (!shouldPass) return ;
-      setTimeout(() => {
-        game.forceStep(`dp${generateDice().join('')}`);
-      });
+      if (!shouldPass) {
+        game.allowed = true;
+      }
+      else {
+        setTimeout(() => {
+          game.forceStep(`dp${generateDice().join('')}`);
+        });
+      }
     });
   }
 }
