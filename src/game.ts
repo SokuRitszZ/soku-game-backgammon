@@ -3,6 +3,16 @@ import { Snapshot, StepResult } from './types';
 
 @GameImpl('backgammon')
 export class BackgammonGame extends Game {
+  toString(): string {
+    return `${this.data.pieces.map(x => `${x[0].length} ${x[1].length}`).join(' ')}`;
+  }
+
+  allowed = true;
+
+  isAllowed(): boolean {
+    return this.allowed;
+  }
+
   data: Snapshot = {
     dice: [],
     pieces: Array.from(
