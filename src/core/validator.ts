@@ -1,6 +1,6 @@
 import { GamePlugin, GamePluginImpl, LifeCycle } from '@soku-games/core';
 import { clamp, parseInt } from 'lodash-es';
-import { BackgammonGame } from './game';
+import { BackgammonGame } from './game.ts';
 
 @GamePluginImpl('backgammon-validator')
 export class BackgammonValidator extends GamePlugin {

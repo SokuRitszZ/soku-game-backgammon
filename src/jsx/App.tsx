@@ -1,4 +1,4 @@
-import { BackgammonGame } from '../game';
+import { BackgammonGame } from '../core/game.ts';
 import { setStore } from './game.context';
 
 import 'virtual:uno.css';

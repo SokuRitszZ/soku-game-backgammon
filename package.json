@@ -1,12 +1,11 @@
 {
   "name": "soku-game-backgammon",
-  "version": "0.4.0",
+  "version": "0.5.1",
   "description": "The example: soku-game-backgammon.",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:umd": "vite build -m umd",
-    "pub": "vite build && npm publish --access public"
+    "build": "./build.sh",
+    "pub": "pnpm build && npm publish --access public"
   },
   "exports": {
     "./core": {
