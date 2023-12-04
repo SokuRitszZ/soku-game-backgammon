@@ -1,8 +1,8 @@
 import { GamePluginImpl, GamePlugin } from '@soku-games/core';
 import { render } from 'solid-js/web';
 
-import { App } from './jsx';
-import { BackgammonGame } from './game';
+import { BackgammonGame } from '../core/game.ts';
+import { App } from './index.ts';
 
 import 'virtual:uno.css';
 

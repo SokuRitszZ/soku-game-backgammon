@@ -2,8 +2,8 @@ import { buildGame, NewGenerator } from '@soku-games/core';
 
 import 'virtual:uno.css';
 
-import '../index';
-import '../screen';
+import '../core.ts';
+import '../jsx/screen.tsx';
 
 export const App = () => {
   let divRef: HTMLElement;

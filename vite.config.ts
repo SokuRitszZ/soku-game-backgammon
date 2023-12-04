@@ -1,52 +1,55 @@
-import { defineConfig } from 'vite';
+import { defineConfig, PluginOption, UserConfig } from 'vite';
 import solid from 'vite-plugin-solid';
 import uno from 'unocss/vite';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 export default defineConfig(({ mode }) => {
-  const plugins = [
+  const plugins: PluginOption[] = [
     solid(),
     uno(),
     cssInjectedByJsPlugin(),
   ];
-
-  if (mode === 'umd') {
+  function makeConfig(name: string): UserConfig {
     return {
       plugins,
       build: {
-        minify: false,
+        outDir: `./dist-${name}`,
         rollupOptions: {
-          input: './src/all.ts',
+          input: `./src/${name}.ts`,
           output: {
-            format: 'umd',
             name: 'index',
-            entryFileNames: 'dist.umd.js',
+            entryFileNames: 'index.js',
+            format: 'iife',
           },
           external: ['@soku-games/core'],
         },
       },
     };
   }
-  return {
-    plugins,
-    build: {
-      rollupOptions: {
-        input: {
-          'core/index': './src/index.ts',
-          'screen/index': './src/screen.tsx',
+  if (!['production', 'development'].includes(mode))
+    return makeConfig(mode);
+  else
+    return {
+      plugins,
+      build: {
+        outDir: './dist',
+        rollupOptions: {
+          input: {
+            'core/index': './src/core.ts',
+            'screen/index': './src/screen.ts',
+          },
+          output: [
+            {
+              entryFileNames: '[name].cjs',
+              format: 'cjs',
+            },
+            {
+              entryFileNames: '[name].mjs',
+              format: 'esm',
+            },
+          ],
+          external: ['@soku-games/core'],
         },
-        output: [
-          {
-            entryFileNames: '[name].cjs',
-            format: 'cjs',
-          },
-          {
-            entryFileNames: '[name].mjs',
-            format: 'esm',
-          },
-        ],
-        external: ['@soku-games/core'],
       },
-    },
-  };
+    };
 });

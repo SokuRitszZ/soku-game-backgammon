@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import { BackgammonGame } from '../game';
+import { BackgammonGame } from '../core/game.ts';
 
 interface Store {
   emit?: (stepStr: string) => void;

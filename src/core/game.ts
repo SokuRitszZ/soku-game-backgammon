@@ -1,5 +1,5 @@
 import { Game, GameImpl } from '@soku-games/core';
-import { Snapshot, StepResult } from './types';
+import { Snapshot, StepResult } from './types.ts';
 
 @GameImpl('backgammon')
 export class BackgammonGame extends Game {
