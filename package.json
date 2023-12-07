@@ -1,6 +1,6 @@
 {
   "name": "soku-game-backgammon",
-  "version": "0.5.2",
+  "version": "0.5.5",
   "description": "The example: soku-game-backgammon.",
   "scripts": {
     "dev": "vite",
@@ -9,12 +9,12 @@
   },
   "exports": {
     "./core": {
-      "import": "./dist/core/index.mjs",
-      "require": "./dist/core/index.cjs"
+      "import": "./dist/core/index.esm.js",
+      "require": "./dist/core/index.cjs.js"
     },
     "./screen": {
-      "import": "./dist/screen/index.mjs",
-      "require": "./dist/screen/index.cjs"
+      "import": "./dist/screen/index.esm.js",
+      "require": "./dist/screen/index.cjs.js"
     }
   },
   "files": [
